@@ -1,0 +1,45 @@
+# =============================================================================
+# .gitignore for rtp-streamer
+# =============================================================================
+
+# ---------- Compiled binaries ----------
+*.exe
+*.out
+sender
+receiver
+
+# ---------- Build artifacts ----------
+*.o
+*.d
+
+# ---------- Generated test input data (re-creatable via gen_test_*.py) ----------
+input/audio.wav
+input/frames/
+
+# ---------- Reassembled output (produced by receiver at runtime) ----------
+output/audio_out.wav
+output/frames_out/
+
+# ---------- Test run log files produced during development ----------
+recv_out.txt
+recv_err.txt
+recv_vid_out.txt
+recv_vid_err.txt
+
+# ---------- OS / editor noise ----------
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# ---------- Keep output directory structure in git ----------
+# (the output/ dir itself is committed with a .gitkeep so CI can write into it)
+!output/.gitkeep
+!output/frames_out/
+!output/frames_out/.gitkeep
+!input/.gitkeep
+!input/frames/
+!input/frames/.gitkeep

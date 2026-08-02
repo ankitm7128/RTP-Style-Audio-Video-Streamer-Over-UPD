@@ -1,0 +1,19 @@
+# Force LF line endings in the repo for cross-platform consistency.
+# Git will handle the conversion to CRLF on Windows checkout automatically.
+
+* text=auto
+
+# Source and config files: always LF in repo
+*.cpp   text eol=lf
+*.h     text eol=lf
+*.py    text eol=lf
+*.md    text eol=lf
+*.txt   text eol=lf
+Makefile text eol=lf
+.gitignore text eol=lf
+
+# Compiled binaries: treat as binary (no line-ending conversion)
+*.exe   binary
+*.o     binary
+*.raw   binary
+*.wav   binary
