@@ -253,17 +253,3 @@ This implementation deliberately omits a few real RTP features for scope:
 | Adaptive jitter buffer | Simplified | We use a fixed 200ms gap threshold |
 
 ---
-
-## Interview Talking Points
-
-1. **Why UDP and not TCP?** — TCP's retransmission causes variable latency that breaks real-time media (playout buffer blown). UDP lets us control loss vs latency ourselves.
-
-2. **Why sequence_number wraps?** — uint16_t gives 65535 distinct values; real RTP uses `(a - b) mod 2^16` comparison to handle wrap-around.
-
-3. **Why 20 ms audio chunks?** — Standard VoIP packetisation interval (G.711/Opus default). Balances network overhead (header per packet) against latency.
-
-4. **Why 90 kHz video clock?** — RFC 3550 mandates 90 kHz for video because it's evenly divisible by common frame rates (24/25/30/60 fps).
-
-5. **Why std::map for reorder buffer?** — Sorted by key (seq#), so drain in order is just iteration. O(log n) insert but n is small (jitter buffer depth).
-
-6. **How would you add RTCP?** — Separate socket on port+1, sender sends SR (Sender Report) with NTP timestamp + packet count; receiver sends RR (Receiver Report) with fraction lost + jitter estimate.
